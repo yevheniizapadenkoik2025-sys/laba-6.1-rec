@@ -1,0 +1,70 @@
+#include <stdio.h>
+void print_arr(int* arr, int size, int index);
+int sum_arr(int* arr, int size);
+int count_arr(int* mas, int size);
+void update__arr(int* arr, int size, int index);
+int main()
+{
+    int a[25] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,20,30,14,13,17,-19,-12,-10,-5,6,5,3 };
+
+    print_arr(a, 25,0);
+
+
+    printf("suma:%d\n", sum_arr(a, 25));
+    printf("count:%d\n", count_arr(a, 25));
+   
+    update__arr(a, 25,0);
+    print_arr(a, 25,0);
+
+
+}
+
+
+
+
+void print_arr(int* arr, int size, int index) {
+    if (index == size) {
+        printf("\n");
+        return;
+    }
+
+    printf("%d, ", arr[index]);
+    print_arr(arr, size, index + 1);
+}
+
+
+
+int sum_arr(int* arr, int size) {
+    if (size == 0)
+        return 0;
+
+    int current = arr[size - 1];
+    int add = (current > 0 && current % 2 == 0) ? current : 0;
+
+    return add + sum_arr(arr, size - 1);
+}
+
+
+
+
+int count_arr(int* arr, int size) {
+    if (size == 0)
+        return 0;
+
+    int current = arr[size - 1];
+    int add = (current > 0 && current % 2 == 0) ? 1 : 0;
+
+    return add + count_arr(arr, size - 1);
+}
+
+
+void update__arr(int* arr, int size, int index) {
+    if (index == size)
+        return;
+
+    if (arr[index] > 0 && arr[index] % 2 == 0) {
+        arr[index] = 0;
+    }
+
+    update__arr(arr, size, index + 1);
+}
